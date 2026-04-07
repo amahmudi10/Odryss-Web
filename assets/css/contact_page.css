@@ -1,64 +1,10 @@
-/* --- Contact Section --- */
-.contact-section {
-    padding: 5rem 10%;
-    background: var(--nav-bg); /* Matches nav for consistency */
-}
+/*
+    contact_page.css
+    Styles specific to the contact page layout and components.
+*/
 
-.contact-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.contact-info h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--primary);
-}
-
-.contact-details {
-    list-style: none;
-    margin-top: 2rem;
-}
-
-.contact-details li {
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
-}
-
-/* --- Form Styling --- */
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.form-group input, 
-.form-group textarea {
-    width: 100%;
-    padding: 1rem;
-    border: 1px solid var(--border-color);
-    background: var(--bg-color);
-    color: var(--text-color);
-    border-radius: 8px;
-    font-family: inherit;
-    transition: var(--transition);
-}
-
-.form-group input:focus, 
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.1);
-}
-
-/* Responsive Tweak for Form */
-@media (max-width: 768px) {
-    .contact-container {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        text-align: center;
-    }
+/* Elevate content above the background glows */
+.page-header, .contact-container {
+    position: relative;
+    z-index: 2;
 }

@@ -8,7 +8,8 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.2rem 10%;
+    padding: 0.8rem 10%;
+    height: 70px;
     background: var(--nav-bg);
     border-bottom: 1px solid var(--border-color);
     position: sticky;
@@ -26,7 +27,7 @@ nav ul {
 
 nav ul a {
     text-decoration: none;
-    color: var(--text-color);
+    color: var(--primary);
     font-weight: 600;
     font-size: 0.9rem;
     transition: var(--transition);
@@ -36,8 +37,35 @@ nav ul a:hover {
     color: var(--primary);
 }
 
+/* Call to Action Button in Nav */
+nav ul a.nav-cta {
+    background-color: var(--primary);
+    color: var(--bg-color); /* Contrasting text color */
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+nav ul a.nav-cta:hover {
+    color: var(--bg-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    filter: brightness(1.1);
+}
+
 nav.nav-hidden {
-    top: -100px; /* Adjust based on your nav height to fully hide it */
+    top: -150px; /* Adjust based on your nav height to fully hide it */
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 1001; /* Ensure it stays above the open menu */
 }
 
 /* LOGO */
@@ -49,10 +77,16 @@ nav.nav-hidden {
     text-transform: uppercase;
 }
 
+.logo-svg {
+    height:75px;       /* adjust size */
+    width: auto;       
+    display: block;       /* Removes extra space below image */
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--bg-color);
-    color: var(--text-color);
+    color: var(--primary);
     line-height: 1.6;
     transition: var(--transition);
 }
@@ -61,14 +95,14 @@ body {
 .btn-primary {
     padding: 0.8rem 2rem;
     background-color: var(--primary);
-    color: white;
+    color: var(--secondary);
     border: none;
     border-radius: 6px;
     font-weight: 600;
     font-size: 1rem;
     cursor: pointer;
     transition: var(--transition);
-    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+    box-shadow: var(--card-shadow);
 }
 
 .btn-primary:hover {
@@ -76,11 +110,28 @@ body {
     filter: brightness(1.1);
 }
 
+.btn-secondary {
+    padding: 0.8rem 2rem;
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-secondary:hover {
+    background-color: #ffffff;
+    color: #1f366c;
+}
+
 /* Theme Toggle Button Style */
 #theme-toggle {
-    background: var(--bg-color);
+    background: var(--theme-btn);
     border: 1px solid var(--border-color);
-    color: var(--text-color);
+    color: var(--primary);
     padding: 6px 14px;
     border-radius: 20px;
     cursor: pointer;
@@ -95,8 +146,8 @@ body {
 
 /* --- Global Footer Styles --- */
 .site-footer {
-    background: var(--nav-bg);
-    color: var(--text-color);
+    background: var(--footer-bg);
+    color: var(--footer-primary);
     padding: 4rem 10% 2rem 10%;
     border-top: 1px solid var(--border-color);
     margin-top: 5rem;
@@ -118,7 +169,7 @@ body {
 
 .footer-links h4, 
 .footer-contact h4 {
-    color: var(--primary);
+    color: var(--footer-primary);
     margin-bottom: 1.5rem;
     text-transform: uppercase;
     font-size: 0.9rem;
@@ -135,13 +186,13 @@ body {
 
 .footer-links a {
     text-decoration: none;
-    color: var(--text-color);
+    color: var(--footer-primary);
     transition: var(--transition);
     opacity: 0.8;
 }
 
 .footer-links a:hover {
-    color: var(--primary);
+    color: var(--footer-primary);
     opacity: 1;
 }
 
@@ -160,13 +211,13 @@ body {
 }
 
 .social-icons a {
-    color: var(--text-color);
+    color: var(--footer-primary);
     font-size: 1.4rem;
     transition: var(--transition);
 }
 
 .social-icons a:hover {
-    color: var(--primary);
+    color: var(--footer-primary);
     transform: translateY(-3px);
 }
 
@@ -179,8 +230,92 @@ body {
     opacity: 0.6;
 }
 
-/* Responsive Footer */
+/* --- Video Background Utilities --- */
+.video-container {
+    position: relative;
+    overflow: hidden;
+    /* Retains original hero background logic as a pre-load fallback */
+}
+
+.bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.65); /* Dark overlay so white text is highly readable */
+    z-index: 1;
+}
+
+.hero-content-wrapper {
+    position: relative;
+    z-index: 2;
+    color: #ffffff !important;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3); /* Adds extra legibility against fire footage */
+}
+
+.hero-content-wrapper h1,
+.hero-content-wrapper h2,
+.hero-content-wrapper p {
+    color: #ffffff !important;
+}
+
+/* Accessibility: Remove video for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .bg-video {
+        display: none;
+    }
+}
+
+/* Responsive Footer & Nav */
 @media (max-width: 768px) {
+    /* Nav Mobile Styles */
+    nav {
+        padding: 1rem 5%;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    nav ul.nav-links {
+        position: absolute;
+        top: 70px; /* Right below the nav bar */
+        left: 0;
+        width: 100%;
+        background: var(--nav-bg);
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 2rem 5%;
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        
+        /* Slide down animation prep */
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        transition: clip-path 0.4s ease-in-out;
+    }
+
+    nav ul.nav-links.active {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    nav ul a.nav-cta {
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+    }
+
+    /* Footer Mobile Styles */
     .footer-container {
         grid-template-columns: 1fr;
         gap: 2.5rem;

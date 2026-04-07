@@ -5,132 +5,173 @@
 
 /* --- Team Page Layout --- */
 .team-page {
-    padding: 5rem 10%;
+    /* Increased bottom padding from 6rem to 10rem to replace the footer margin */
+    padding: 6rem 10% 10rem 10%; 
     text-align: center;
 }
 
+/* Elevate content above the background glows */
+.page-header, .team-grid {
+    position: relative;
+    z-index: 2;
+}
+
+.page-header {
+    margin-bottom: 5rem;
+}
+
 .page-header h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     color: var(--primary);
-    margin-bottom: 1rem;
+    font-weight: 800;
+    letter-spacing: -1px;
 }
 
 .team-grid {
     display: grid;
-    /* Increased the minimum width slightly for better clarity */
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 3rem;
-    margin-top: 4rem;
-    /* Centering and capping the grid prevents cards from stretching on zoom-out */
-    max-width: 1100px; 
-    margin-left: auto;
-    margin-right: auto;
+    /* Adjusted for wider cards and breathing room */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start; /* Keeps cards aligned at top as they expand downwards */
     justify-content: center; 
 }
 
-/* --- Team Card Design --- */
+/* --- Clean Static Card Design --- */
 .team-card {
     background: transparent;
-    perspective: 1000px;
-    height: auto; 
-    /* Capping the card width ensures the image doesn't blow up on wide screens */
-    max-width: 350px; 
     width: 100%;
-    margin: 0 auto; /* Centers the card within its grid cell */
-    border: none;
-    box-shadow: none;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.card-inner {
+/* --- Image & Hover Reveal --- */
+.member-image {
     position: relative;
     width: 100%;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-    cursor: pointer;
-}
-
-/* The flip trigger */
-.team-card:hover .card-inner {
-    transform: rotateY(180deg);
-}
-
-.card-front {
-    position: relative; /* Changed from absolute */
-    width: 100%;
-    backface-visibility: hidden;
-    border-radius: 15px;
-    border: 1px solid var(--border-color);
-    background: var(--card-bg);
-    display: flex;
-    flex-direction: column;
+    border-radius: 16px;
     overflow: hidden;
-    z-index: 2;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 2rem; /* Breathing room between image and typography */
 }
 
-/* Style for the back of the card */
-.card-back {
-    position: absolute; /* Keeps it behind the front */
-    top: 0;
-    left: 0;
+.member-image img {
     width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    transform: rotateY(180deg);
-    border-radius: 15px;
-    border: 1px solid var(--border-color);
-    background: var(--hero-bg);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
+    height: auto; 
+    display: block;
+    object-fit: contain; 
+    filter: grayscale(100%);
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.6s ease;
+}
+
+.team-card:hover .member-image img {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+/* --- Enhanced Typography Hierarchy --- */
+.member-info {
     text-align: center;
+    width: 100%;
 }
 
-.card-back h3 {
+.member-info h3 {
+    font-size: 1.8rem;
+    font-weight: 800;
     color: var(--primary);
-    margin-bottom: 1rem;
+    margin-bottom: 0.3rem;
+    letter-spacing: -0.5px;
 }
 
-.card-back p {
-    margin-bottom: 2rem;
-    font-size: 1rem;
-    line-height: 1.4;
+.member-title {
+    display: inline-block;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--primary);
+    opacity: 0.6;
 }
 
-/* Styling for LinkedIn and Email links */
+/* --- Slide-Down Bio Reveal --- */
+.member-bio-reveal {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease, margin-top 0.4s ease;
+    margin-top: 0;
+}
+
+/* Expands when hovering over the parent team-card */
+.team-card:hover .member-bio-reveal {
+    max-height: 400px; /* Expands to fit content */
+    opacity: 1;
+    margin-top: 2rem; /* Creates gap between title and bio */
+}
+
+.member-bio-reveal h4 {
+    font-size: 0.85rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.3rem;
+    margin-top: 1.5rem;
+}
+
+.member-bio-reveal h4:first-child {
+    margin-top: 0;
+}
+
+.member-bio-reveal p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+    opacity: 0.8;
+}
+
+/* Styling for LinkedIn and Email links inside bio */
 .social-links {
     display: flex;
     gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
 }
 
 .social-links a {
     text-decoration: none;
-    color: white;
+    color: var(--secondary);
     background: var(--primary);
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    font-weight: 600;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.1rem;
     transition: var(--transition);
 }
 
 .social-links a:hover {
     filter: brightness(1.2);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
 }
 
-/* --- Image Handling --- */
-.member-image {
-    width: 100%;
-    aspect-ratio: auto; /* Remove the 1/1 square restriction */
-    background: none;
-    line-height: 0; /* Prevents tiny gaps at the bottom of the image */
+/* Dark Theme Overrides specifically for this refined typography */
+.dark-theme .member-info h3 {
+    color: #ffffff;
+}
+.dark-theme .member-title {
+    color: #ffffff;
+    opacity: 0.7;
 }
 
-.member-image img {
-    width: 100%;
-    height: auto; /* Allow the image to maintain its natural proportions */
-    display: block;
-    object-fit: contain; /* Ensures the whole image is visible */
+/* --- Layout Fix: Remove gap above footer --- */
+/* This allows the topographic background to touch the footer seamlessly */
+.team-page + #footer-placeholder .site-footer {
+    margin-top: 0;
 }

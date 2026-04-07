@@ -8,96 +8,92 @@
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-    <nav>
-        <div class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">Odryss</a></div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="product.html">Product</a></li>
-            <li><a href="mission.html">Mission</a></li>
-            <li><a href="team.html">Meet The Team</a></li>
-            <li><a href="index.html#contact">Contact Us</a></li>
-            <li><button id="theme-toggle">🌙</button></li>
-        </ul>
-    </nav>
+    <div id="nav-placeholder"></div>
 
-    <main class="mission-page">
-        <header class="mission-hero">
-            <h1>Seconds Save Lives.</h1>
-            <p>Odryss is redefining fire safety by bridging the gap between detection and action through autonomous robotics.</p>
-        </header>
+    <main class="mission-page dot-matrix-bg">
+        <!-- <header class="mission-hero video-container">
+            
+            <video class="bg-video" autoplay loop muted playsinline poster="assets/videos/mission-poster.jpg">
+                <source src="assets/videos/mission-bg.mp4" type="video/mp4">
+            </video> 
+            <div class="video-overlay"></div>
+
+            <div class="hero-content-wrapper">
+                <h1>Seconds Save Lives.</h1>
+                <p>Odryss uses edge-AI and autonomous hardware to neutralize fires instantly at the point of ignition.</p>
+            </div>
+        </header> -->
 
         <section class="mission-content">
-            <div class="mission-grid">
+            <!-- General Section Header -->
+            <div class="section-header fade-in">
+                <h2>The Critical Need</h2>
+            </div>
+
+            <!-- 1. Property Damage -->
+            <div class="mission-grid fade-in">
                 <div class="text-block">
-                    <h2>The Critical Need</h2>
-                    <p>Traditional fire suppression systems—sprinklers and alarms—are reactive. They often engage only after significant smoke or heat has already compromised a structure. This delay results in billions of dollars in property damage and irreparable loss of life every year.</p>
-                    <p>Industrial environments and high-density business sectors require a solution that doesn't just alert, but actively intervenes before a spark becomes a catastrophe.</p>
+                    <h2>Property Damage</h2>
+                    <p>Traditional fire systems are fundamentally reactive, waiting for significant heat or smoke to trigger. This fatal delay costs billions in property damage and demands an immediate, autonomous solution.</p>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">$12B+</div>
-                    <div class="stat-label">Annual property loss from fires in the U.S.</div>
+                    <div class="stat-number">
+                        <!-- Dynamic Counter -->
+                        <span class="counter-value" data-prefix="$" data-target="18" data-suffix="B+">0</span>
+                    </div>
+                    <div class="stat-label">
+                        Annual property loss from fires in the U.S.
+                        <br>
+                        <small style="opacity: 0.7; font-size: 0.85rem; display: inline-block; margin-top: 0.5rem;">Source: National Fire Protection Association (NFPA)</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. The Time Gap -->
+            <div class="mission-grid fade-in" style="margin-top: 6rem;">
+                <div class="text-block">
+                    <h2>The "Flashover" Time Gap</h2>
+                    <p>Traditional sprinklers rely on extreme heat reaching the ceiling, often taking 3 to 5 minutes to trigger. By the time they activate, a small spark has already become an uncontrollable inferno. Odryss uses computer vision to detect the visual signature of a fire in milliseconds, intervening before the heat ever reaches the ceiling.</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">
+                        <!-- Dynamic Counter -->
+                        <span class="counter-value" data-target="60" data-suffix="s">0</span>
+                    </div>
+                    <div class="stat-label">
+                        Time it takes for a fire to double in size without intervention.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Collateral Water Damage -->
+            <div class="mission-grid fade-in" style="margin-top: 6rem;">
+                <div class="text-block">
+                    <h2>Collateral Water Damage</h2>
+                    <p>Sprinklers are notorious for destroying the very assets they were meant to protect. In places like server rooms or manufacturing floors, blind water dispersion often ruins more equipment than the actual fire. Odryss uses targeted, localized suppression—aiming directly at the threat and using only what is necessary.</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">
+                        <!-- Dynamic Counter -->
+                        <span class="counter-value" data-prefix="15-" data-target="25">0</span>
+                    </div>
+                    <div class="stat-label">
+                        Gallons of water discharged per minute by a single traditional sprinkler.
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="market-section">
-            <div class="market-container">
-                <h2>Market Opportunity</h2>
-                <p>We are positioning ourselves at the intersection of two rapidly growing industries: Autonomous Robotics and Fire Protection Systems.</p>
-                
-                <div class="market-grid">
-                    <div class="market-card">
-                        <h3>$90B+</h3>
-                        <p>Total Addressable Market (TAM) for Global Fire Protection by 2030.</p>
-                    </div>
-                    <div class="market-card">
-                        <h3>15% CAGR</h3>
-                        <p>Growth rate for AI-integrated industrial safety hardware.</p>
-                    </div>
-                    <div class="market-card">
-                        <h3>High Demand</h3>
-                        <p>Immediate need within data centers, manufacturing, and luxury residential sectors.</p>
-                    </div>
-                </div>
-            </div>
+        <!-- Cliffhanger Section replacing Market Section -->
+        <section class="mission-cliffhanger fade-in">
+            <h2>The Mission Drives the Innovation.</h2>
+            <p>Discover how our edge-AI hardware and targeted suppression systems are positioned to redefine a $100B+ global industry.</p>
+            <button class="btn-primary" onclick="window.location.href='product.html'">See the Technology</button>
         </section>
 
-        <section class="solution-highlight">
-            <h2>The FireShield Advantage</h2>
-            <p>Our autonomous robotic device utilizes advanced computer vision to detect and extinguish fires in real-time. By deploying localized, intelligent hardware, we eliminate the reliance on slow-moving manual responses.</p>
-            <button class="btn-primary" onclick="window.location.href='index.html#contact'">Inquire for Investment</button>
-        </section>
     </main>
 
-    <footer class="site-footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <div class="logo">Odryss</div>
-                <p>Advanced embedded systems meeting real-time software analysis.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Explore</h4>
-                <ul>
-                    <li><a href="#">Product</a></li>
-                    <li><a href="mission.html">Mission</a></li>
-                    <li><a href="team.html">Meet The Team</a></li>
-                    <li><a href="index.html#contact">Contact Us</a></li>
-                </ul>
-            </div>
-            <div class="footer-contact">
-                <h4>Connect</h4>
-                <p><i class="fas fa-envelope"></i> support@fireshield.tech</p>
-                <p><i class="fas fa-map-marker-alt"></i> San Francisco, CA</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Odryss. All rights reserved.</p>
-        </div>
-    </footer>
+    <div id="footer-placeholder"></div>
 
     <script src="assets/js/main.js"></script>
 </body>

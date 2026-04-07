@@ -1,13 +1,15 @@
 /* --- Product Page Layout --- */
 .product-page {
-    padding-bottom: 5rem;
+    padding-bottom: 0; /* Changed from 5rem to 0 to fix the blank gap above footer */
 }
 
 .product-hero {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    padding: 8rem 10% 4rem;
+    justify-content: center;
+    text-align: center;
+    padding: 10rem 10% 8rem; /* Increased padding slightly for breathing room */
     background: var(--hero-bg);
 }
 
@@ -19,6 +21,7 @@
     font-size: 0.8rem;
     font-weight: 800;
     text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .product-hero h1 {
@@ -28,14 +31,25 @@
 
 .hero-actions {
     display: flex;
+    justify-content: center;
     gap: 1.5rem;
     margin-top: 2rem;
 }
 
 /* --- Effectiveness Features --- */
 .effectiveness {
-    padding: 6rem 10%;
+    padding: 4rem 10% 2rem 10%; /* Reduced top and bottom padding to close blank spaces */
     text-align: center;
+    position: relative;
+    z-index: 2; /* Elevates above dot matrix */
+}
+
+/* Explicit sizing to match the Market Opportunity header perfectly */
+.effectiveness h2 {
+    font-size: 2.5rem;
+    color: var(--primary);
+    font-weight: 800;
+    margin-bottom: 1.5rem;
 }
 
 .features-grid {
@@ -45,22 +59,154 @@
     margin-top: 4rem;
 }
 
+.feature-item {
+    padding: 2.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-item::before {
+    content: '';
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 4px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    border-color: transparent;
+}
+
+.feature-item:hover::before {
+    transform: scaleX(1);
+}
+
 .feature-item i {
     font-size: 3rem;
-    color: var(--primary);
     margin-bottom: 1.5rem;
+    display: inline-block; /* Required for transform animations to work on <i> tags */
+    transition: all 0.3s ease;
 }
 
-/* --- Comparison Table --- */
-.comparison {
-    padding: 6rem 10%;
-    background: var(--nav-bg);
+/* --- Specific Feature Item Colors --- */
+/* 1. Computer Vision (Green) */
+.feature-item:nth-child(1) i,
+.feature-item:nth-child(1) h3 {
+    color: #2ecc71;
+}
+.feature-item:nth-child(1)::before {
+    background: linear-gradient(90deg, #2ecc71, #27ae60);
+}
+.feature-item:nth-child(1):hover {
+    box-shadow: 0 15px 30px rgba(46, 204, 113, 0.15);
 }
 
+/* 2. Embedded Edge Control (Blue) */
+.feature-item:nth-child(2) i,
+.feature-item:nth-child(2) h3 {
+    color: #4a90e2;
+}
+.feature-item:nth-child(2)::before {
+    background: linear-gradient(90deg, #4a90e2, #357abd);
+}
+.feature-item:nth-child(2):hover {
+    box-shadow: 0 15px 30px rgba(74, 144, 226, 0.15);
+}
+
+/* 3. Cloud Telemetry (Orange) */
+.feature-item:nth-child(3) i,
+.feature-item:nth-child(3) h3 {
+    color: #f39c12;
+}
+.feature-item:nth-child(3)::before {
+    background: linear-gradient(90deg, #f39c12, #e67e22);
+}
+.feature-item:nth-child(3):hover {
+    box-shadow: 0 15px 30px rgba(243, 156, 18, 0.15);
+}
+
+/* Hover Animations for specific feature icons */
+.feature-item:hover .fa-eye {
+    animation: eyeBlink 2s infinite;
+}
+
+.feature-item:hover .fa-microchip {
+    animation: chipPulse 1.5s infinite;
+}
+
+.feature-item:hover .fa-chart-line {
+    animation: chartRise 1.5s infinite linear;
+}
+
+/* Keyframes for Icon Animations */
+@keyframes eyeBlink {
+    0%, 45%, 55%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(0.1); } /* Squish vertically to simulate blink */
+}
+
+@keyframes chipPulse {
+    0% { transform: scale(1); text-shadow: 0 0 0 rgba(74, 144, 226, 0); }
+    50% { transform: scale(1.1); text-shadow: 0 0 20px rgba(74, 144, 226, 0.8), 0 0 40px rgba(74, 144, 226, 0.4); }
+    100% { transform: scale(1); text-shadow: 0 0 0 rgba(74, 144, 226, 0); }
+}
+
+@keyframes chartRise {
+    0% { transform: translate(-8px, 8px); opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { transform: translate(8px, -8px); opacity: 0; }
+}
+
+/* --- Product Details (Comparison & Specs Side-by-Side) --- */
+.product-details-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    padding: 2rem 10% 6rem 10%; /* Reduced top padding to pull it closer to effectiveness section */
+    align-items: stretch;
+    position: relative;
+    z-index: 2; /* Elevates above dot matrix */
+}
+
+/* Shared sleek card style for both sections */
+.details-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 3rem;
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.details-card:hover {
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+}
+
+.details-card h2 {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 2rem;
+    font-weight: 800;
+}
+
+/* --- Comparison Table specific --- */
 .table-container {
-    max-width: 900px;
-    margin: 3rem auto 0;
+    width: 100%;
     overflow-x: auto;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 table {
@@ -70,40 +216,178 @@ table {
 }
 
 th, td {
-    padding: 1.5rem;
+    padding: 1.2rem 1rem;
     border-bottom: 1px solid var(--border-color);
+    font-size: 0.95rem;
+}
+
+th {
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+/* New Red Highlight specifically for the Traditional Sprinklers column */
+.highlight-red {
+    background: rgba(230, 57, 70, 0.1); /* Transparent red */
+    color: var(--primary);
+    font-weight: 700;
+    border-radius: 6px;
+}
+
+.dark-theme .highlight-red {
+    background: rgba(230, 57, 70, 0.2);
 }
 
 .highlight {
-    background: rgba(230, 57, 70, 0.05);
+    background: rgba(46, 204, 113, 0.1); /* Vibrant green, low opacity */
     color: var(--primary);
     font-weight: 700;
+    border-radius: 6px;
 }
 
 .dark-theme .highlight {
-    background: rgba(230, 57, 70, 0.15);
+    background: rgba(46, 204, 113, 0.2); /* Slightly higher opacity for dark mode visibility */
 }
 
-/* --- Specs --- */
-.specs-section {
-    padding: 6rem 10%;
-    text-align: center;
+/* --- Tech Specs specific --- */
+.specs-grid {
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .specs-grid ul {
     list-style: none;
-    max-width: 600px;
-    margin: 2rem auto;
-    text-align: left;
+    margin: 0;
+    padding: 0;
 }
 
 .specs-grid li {
-    padding: 1rem 0;
+    padding: 1.5rem 0;
+    border-bottom: 1px dashed var(--border-color);
+    font-size: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.specs-grid li:last-child {
+    border-bottom: none;
+}
+
+.specs-grid li strong {
+    color: var(--primary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    opacity: 0.7;
+}
+
+/* --- Market Section --- */
+.market-section {
+    background: #f4f6f8; /* Swapped from translucent to an opaque solid color to block the dot matrix */
+    padding: 6rem 10% 4rem 10%;
+    border-top: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
+    position: relative;
+    z-index: 2;
+}
+
+.dark-theme .market-section {
+    background: #151e32; /* Solid dark color to block dot matrix seamlessly in dark mode */
+}
+
+.market-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Reduced size slightly to cleanly match the Effectiveness header */
+.market-container h2 {
+    font-size: 2.5rem;
+    color: var(--primary);
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+}
+
+.market-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+}
+
+/* Revamped market card with gradient accents */
+.market-card {
+    padding: 2.5rem;
+    background: var(--bg-color);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.market-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), #4a90e2);
+    transition: height 0.3s ease;
+}
+
+.market-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(31, 54, 108, 0.12); 
+    border-color: transparent;
+}
+
+.market-card:hover::after {
+    height: 6px;
+}
+
+.market-card h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--dark-blue);
+    transition: color 0.3s ease;
+}
+
+.market-card:hover h3 {
+    color: var(--primary);
+}
+
+.stat-source {
+    display: block;
+    font-size: 0.8rem;
+    opacity: 0.6;
+    margin-top: 0.8rem;
+    color: var(--primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+    .product-details-container {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 768px) {
-    .product-hero { grid-template-columns: 1fr; text-align: center; }
-    .hero-actions { justify-content: center; }
+    .product-hero { padding: 6rem 5% 4rem; }
+    .product-hero h1 { font-size: 3rem; }
+}
+
+/* --- Layout Fix: Remove blank gap above footer --- */
+/* This allows the dot matrix background to touch the footer seamlessly */
+.product-page + #footer-placeholder .site-footer {
+    margin-top: 0;
 }

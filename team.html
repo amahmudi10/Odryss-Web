@@ -3,47 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meet the Team | Odryss</title>
+    <title>Team | Odryss</title>
     <link rel="icon" href="assets/images/logo.png" type="image/png">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <nav>
-        <div class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">Odryss</a></div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="product.html">Product</a></li>
-            <li><a href="mission.html">Mission</a></li>
-            <li><a href="team.html">Meet The Team</a></li>
-            <li><a href="index.html#contact">Contact Us</a></li>
-            <li><button id="theme-toggle">🌙</button></li>
-        </ul>
-    </nav>
+    <div id="nav-placeholder"></div>
 
-    <main class="team-page">
+    <main class="team-page dot-matrix-bg">
         <header class="page-header">
             <h1>Meet the Team</h1>
-            <p>The engineers behind the hardware/software integration.</p>
         </header>
 
         <section class="team-grid">
+            <!-- Team Member 1 -->
             <div class="team-card">
-                <div class="card-inner">
-                    <div class="card-front">
-                        <div class="member-image">
-                            <img src="assets/images/eron_mahmudi.jpg" alt="Eron Mahmudi">
-                        </div>
-                        <div class="member-info">
-                            <h3>Eron Mahmudi</h3>
-                            <p>Co-Founder</p>
-                        </div>
-                    </div>
-                    <div class="card-back">
-                        <h3>Eron Mahmudi</h3>
-                        <p>Mechanical Engineer @ Apple.</p>
+                <div class="member-image">
+                    <img src="assets/images/eron_mahmudi.jpg" alt="Eron Mahmudi">
+                </div>
+                <div class="member-info">
+                    <h3>Eron Mahmudi</h3>
+                    <span class="member-title">Co-Founder</span>
+                    
+                    <!-- Slide-Down Bio Reveal -->
+                    <div class="member-bio-reveal">
+                        <h4>Background</h4>
+                        <p>Mechanical Design Engineer @ Apple, SpaceX, Ford</p>
+                        <h4>Education</h4>
+                        <p>University of Illinois Mechanical Science & Engineering Alum</p>
                         <div class="social-links">
-                            <a href="mailto:eron@fireshield.tech" title="Email">
+                            <a href="mailto:eronmahmudi33@gmail.com" title="Email">
                                 <i class="fas fa-envelope"></i>
                             </a>
                             <a href="https://www.linkedin.com/in/eron-mahmudi/" target="_blank" title="LinkedIn">
@@ -54,20 +44,21 @@
                 </div>
             </div>
 
+            <!-- Team Member 2 -->
             <div class="team-card">
-                <div class="card-inner">
-                    <div class="card-front">
-                        <div class="member-image">
-                            <img src="assets/images/arif_mahmudi.jpg" alt="Arif Mahmudi">
-                        </div>
-                        <div class="member-info">
-                            <h3>Arif Mahmudi</h3>
-                            <p>Co-Founder</p>
-                        </div>
-                    </div>
-                    <div class="card-back">
-                        <h3>Arif Mahmudi</h3>
-                        <p>Test Engineer @ Series C Autonomous Aircraft Startup</p>
+                <div class="member-image">
+                    <img src="assets/images/arif_mahmudi.jpg" alt="Arif Mahmudi">
+                </div>
+                <div class="member-info">
+                    <h3>Arif Mahmudi</h3>
+                    <span class="member-title">Co-Founder</span>
+                    
+                    <!-- Slide-Down Bio Reveal -->
+                    <div class="member-bio-reveal">
+                        <h4>Background</h4>
+                        <p>Mechanical & Test Engineer @ Reliable Robotics, Honeywell FM&T</p>
+                        <h4>Education</h4>
+                        <p>University of Illinois Aerospace Engineering Alum</p>
                         <div class="social-links">
                             <a href="mailto:eron@fireshield.tech" title="Email">
                                 <i class="fas fa-envelope"></i>
@@ -80,20 +71,21 @@
                 </div>
             </div>
 
+            <!-- Team Member 3 -->
             <div class="team-card">
-                <div class="card-inner">
-                    <div class="card-front">
-                        <div class="member-image">
-                            <img src="assets/images/luis_moran.jpg" alt="Luis Moran">
-                        </div>
-                        <div class="member-info">
-                            <h3>Luis Moran</h3>
-                            <p>Co-Founder</p>
-                        </div>
-                    </div>
-                    <div class="card-back">
-                        <h3>Luis Moran</h3>
-                        <p>Embedded Software Engineer @ Northrop Grumman.</p>
+                <div class="member-image">
+                    <img src="assets/images/luis_moran.jpg" alt="Luis Moran">
+                </div>
+                <div class="member-info">
+                    <h3>Luis Moran</h3>
+                    <span class="member-title">Co-Founder</span>
+                    
+                    <!-- Slide-Down Bio Reveal -->
+                    <div class="member-bio-reveal">
+                        <h4>Background</h4>
+                        <p>Embedded Software Engineer @ Northrop Grumman</p>
+                        <h4>Education</h4>
+                        <p>University of Illinois Electrical & Computer Engineering Alum<br>Hybrid Cloud & AI Researcher @ IBM</p>
                         <div class="social-links">
                             <a href="mailto:eron@fireshield.tech" title="Email">
                                 <i class="fas fa-envelope"></i>
@@ -108,38 +100,9 @@
         </section>
     </main>
 
+    <div id="footer-placeholder"></div>
+
     <script src="assets/js/main.js"></script>
 
-    <footer class="site-footer">
-    <div class="footer-container">
-        <div class="footer-brand">
-            <div class="logo">Odryss</div>
-            <p>Bridging the gap between high-level logic and low-level control for advanced hardware protection.</p>
-        </div>
-
-        <div class="footer-links">
-            <h4>Explore</h4>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#">Product</a></li>
-                <li><a href="#">Mission</a></li>
-                <li><a href="team.html">Meet The Team</a></li>
-                <li><a href="index.html#contact">Contact Us</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-contact">
-            <h4>Connect</h4>
-            <p><i class="fas fa-envelope"></i> support@fireshield.tech</p>
-            <p><i class="fas fa-map-marker-alt"></i> San Francisco, CA</p>
-            <div class="social-icons">
-                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
-            </div>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2026 Odryss. All rights reserved.</p>
-    </div>
-</footer>
 </body>
 </html>

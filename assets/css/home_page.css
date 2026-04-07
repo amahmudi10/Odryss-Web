@@ -3,56 +3,257 @@
     Styles specific to the home page layout and components.
 */
 
-/* HERO SECTION */
+/* --- HERO SECTION --- */
 .hero {
-    height: 80vh;
+    height: 90vh; /* Made slightly taller to accommodate the scroll arrow */
     display: flex;
     align-items: center;
     padding: 0 10%;
     background: var(--hero-bg);
     transition: var(--transition);
+    position: relative;
 }
 
 .hero-content {
-    max-width: 700px;
+    max-width: 750px;
+    text-align: left; /* Explicitly align text to left */
 }
 
 .hero h1 {
-    font-size: 3.5rem;
+    font-size: 4rem;
     line-height: 1.1;
     font-weight: 800;
     margin-bottom: 1.5rem;
+    letter-spacing: -1px;
 }
 
 .hero p {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     opacity: 0.9;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
-/* FEATURE CARDS */
-.features {
-    padding: 5rem 10%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+/* Increased specificity to prevent product_page.css from overriding this */
+.hero .hero-actions {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: flex-start; /* Ensure buttons perfectly left-align with the text */
+    margin-top: 0; 
 }
 
-.card {
-    padding: 2rem;
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
+/* Scroll Bounce Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    animation: bounce 2.5s infinite;
+}
+
+.scroll-indicator a {
+    color: #ffffff;
+    font-size: 2rem;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.scroll-indicator a:hover {
+    opacity: 1;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+    40% { transform: translateY(-15px) translateX(-50%); }
+    60% { transform: translateY(-7px) translateX(-50%); }
+}
+
+
+/* --- EXPANDING GATEWAY PANELS --- */
+.gateway-section {
+    padding: 6rem 5% 4rem 5%; /* Added a slight bottom padding for a gap above footer */
+    position: relative;
+    z-index: 2; /* Elevates above the dot-matrix background */
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.gateway-container {
+    display: flex;
+    gap: 1.5rem;
+    height: 600px; /* High enough to show off backgrounds */
+    width: 100%;
+}
+
+.panel {
+    position: relative;
+    flex: 1; /* Default state: all equal width */
+    border-radius: 20px;
+    overflow: hidden;
+    transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    cursor: pointer;
+    display: flex;
+    align-items: flex-end;
     box-shadow: var(--card-shadow);
-    transition: var(--transition);
 }
 
-.card:hover {
+.panel:hover {
+    flex: 2.5; /* Expands heavily on hover */
+}
+
+/* Panel Backgrounds */
+.panel-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    transition: transform 0.8s ease, filter 0.6s ease;
+    filter: brightness(0.6);
+}
+
+.panel:hover .panel-bg {
+    transform: scale(1.05);
+    filter: brightness(0.4); /* Darkens on hover to make text highly readable */
+}
+
+/* Specific Panel Colors */
+.mission-panel .panel-bg { background: linear-gradient(135deg, #0f172a, #1e293b); }
+.product-panel .panel-bg { background-color: #0f172a; /* Fallback if image fails */ }
+.team-panel .panel-bg { background: linear-gradient(135deg, #1f366c, #4a90e2); }
+
+/* Panel Content */
+.panel-content {
+    position: relative;
+    z-index: 2;
+    padding: 2.5rem;
+    color: #ffffff;
+    width: 100%;
+}
+
+.panel-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    background: rgba(255, 255, 255, 0.15);
+    width: 65px; height: 65px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    backdrop-filter: blur(8px);
+    transition: background 0.4s ease, transform 0.4s ease;
+    color: #ffffff;
+}
+
+.panel h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    white-space: nowrap; /* Prevents wrapping when shrunk */
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    color: #ffffff;
+}
+
+/* The Reveal Wrapper (Paragraph + Button) */
+.panel-reveal {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(20px);
+    transition: max-height 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease, transform 0.5s ease;
+    width: 380px; /* Fixed width stops text from reflowing during the container's expansion */
+}
+
+.panel p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1.5rem;
+    /* Force text wrapping inside the expanded box */
+    white-space: normal; 
+}
+
+.panel-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+}
+
+.panel-btn i {
+    transition: transform 0.3s ease;
+}
+
+/* --- Hover States Trigger --- */
+.panel:hover .panel-reveal {
+    opacity: 1;
+    max-height: 200px;
+    transform: translateY(0);
+}
+
+.panel:hover .panel-icon {
+    background: var(--primary);
     transform: translateY(-5px);
-    border-color: var(--primary);
 }
 
-.card h3 {
-    margin-bottom: 0.8rem;
-    color: var(--primary);
+.panel:hover .panel-btn i {
+    transform: translateX(5px);
+}
+
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 1024px) {
+    .hero h1 { font-size: 3rem; }
+    .gateway-section { padding: 4rem 5% 3rem 5%; }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        text-align: center;
+        justify-content: center;
+    }
+    
+    .hero-content {
+        text-align: center; /* Reset to center for mobile */
+    }
+
+    .hero .hero-actions {
+        justify-content: center;
+        flex-wrap: wrap; /* Allows buttons to stack if screen is very thin */
+    }
+
+    /* Disable expanding logic on mobile, stack them vertically */
+    .gateway-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .panel {
+        flex: none !important; /* Forces it to ignore hover flex growth */
+        height: auto;
+        padding-top: 5rem; /* Ensure background is visible */
+    }
+
+    /* Force reveal to always be visible on touch screens */
+    .panel-reveal {
+        opacity: 1;
+        max-height: 500px;
+        transform: translateY(0);
+        width: 100%; /* Restore to full width for mobile stacked view */
+    }
+    
+    .panel p {
+        min-width: 100%;
+    }
+    
+    .panel h2 {
+        white-space: normal;
+    }
+}
+
+/* --- Layout Fix: Remove blank gap above footer --- */
+/* Target the main container to drop the footer margin flush with the bottom */
+main + #footer-placeholder .site-footer {
+    margin-top: 0;
 }

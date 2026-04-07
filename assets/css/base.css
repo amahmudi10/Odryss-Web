@@ -8,31 +8,59 @@
 
 /* THEME VARIABLES */
 :root {
-    /* Light Theme (Default) */
+    /*main scheme*/
     --bg-color: #ffffff;
-    --text-color: #2b2d42;
-    --nav-bg: #ffffff;
+    --primary: #1f366c;
+    --secondary: #ffffff;
+
+    /*home page*/
     --card-bg: #ffffff;
     --hero-bg: radial-gradient(circle at top right, #f8f9fa, #e9ecef);
     --border-color: #eeeeee;
     --card-shadow: 0 4px 15px rgba(0,0,0,0.05);
-
-    /* Brand Colors (Fixed) */
-    --primary: #e63946;    /* Fire Red */
-    --dark-blue: #1d3557;  /* Tech Blue */
-    --accent: #457b9d;     
     --transition: all 0.3s ease;
+
+    /*nav*/
+    --nav-bg: #ffffff;
+
+    /*team member*/
+    --team-front: #f8f9fa;
+    --team-back: #f8f9fa;
+
+    /*theme button color*/
+    --theme-btn: #eaeaeb;
+
+    /* Footer */
+    --footer-bg: #f8f9fa;
+    --footer-primary: #1f366c;
 }
 
 /* Dark Theme Overrides */
 .dark-theme {
-    --bg-color: #0f172a;   /* Deep Slate */
-    --text-color: #f1faee; /* Off-white */
-    --nav-bg: #1e293b;
+    /*main scheme*/
+    --bg-color: #0f172a;
+    --primary: #ffffff;
+    --secondary: #1f366c;
+
+    /*home page*/
     --card-bg: #1e293b;
     --hero-bg: radial-gradient(circle at top right, #1e293b, #0f172a);
     --border-color: #334155;
     --card-shadow: 0 4px 20px rgba(0,0,0,0.3);
+
+    /*nav*/
+    --nav-bg: #1e293b;
+
+    /*team member*/
+    --team-front: #1e293b;
+    --team-back: #1e293b;
+
+    /*theme button*/
+    --theme-btn: #0f172a;
+
+    /* Footer */
+    --footer-bg: #1e293b;
+    --footer-primary: #ffffff;
 }
 
 /* BASIC RESET */
@@ -47,9 +75,47 @@
     nav { padding: 1rem 5%; }
     .hero { text-align: center; justify-content: center; }
     .hero h1 { font-size: 2.5rem; }
-    nav ul { display: none; } /* Add a mobile menu later */
 }
 
-html {
+html, body {
+    overflow-x: hidden; /* Global safeguard against horizontal scrolling */
     scroll-behavior: smooth;
+}
+
+/* --- Shared Animated Panning Dot Matrix Background --- */
+.dot-matrix-bg {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-color);
+}
+
+.dot-matrix-bg::before {
+    content: "";
+    position: absolute;
+    /* Add a buffer to the edges so the animation doesn't clip */
+    top: -50px;
+    left: -50px;
+    width: calc(100% + 100px);
+    height: calc(100% + 100px);
+    background-image: radial-gradient(var(--primary) 1.5px, transparent 1.5px);
+    background-size: 35px 35px;
+    opacity: 0.1;
+    z-index: 0;
+    pointer-events: none;
+    animation: panMatrix 15s linear infinite;
+}
+
+@keyframes panMatrix {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-35px, -35px); }
+}
+
+.dark-theme .dot-matrix-bg::before {
+    opacity: 0.15; 
+}
+
+/* Elevate direct children above the background */
+.dot-matrix-bg > * {
+    position: relative;
+    z-index: 2;
 }

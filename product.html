@@ -4,131 +4,154 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FireShield | Odryss Product</title>
+    <link rel="icon" href="assets/images/logo.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-    <nav>
-        <div class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">Odryss</a></div>
-        <ul>
-            <li><a href="product.html">Product</a></li>
-            <li><a href="mission.html">Mission</a></li>
-            <li><a href="team.html">Meet The Team</a></li>
-            <li><a href="index.html#contact">Contact Us</a></li>
-            <li><button id="theme-toggle">🌙</button></li>
-        </ul>
-    </nav>
+    <div id="nav-placeholder"></div>
 
-    <main class="product-page">
-        <header class="product-hero">
-            <div class="hero-text">
-                <span class="badge">Now in Beta</span>
+    <!-- Added dot-matrix-bg class to main -->
+    <main class="product-page dot-matrix-bg">
+        <header class="product-hero video-container">
+            <!-- Background Video -->
+            <video class="bg-video" autoplay loop muted playsinline poster="assets/videos/product-poster.jpg">
+                <source src="assets/videos/mission-bg.mp4" type="video/mp4">
+            </video>
+            <!-- Dark Overlay -->
+            <div class="video-overlay"></div>
+
+            <div class="hero-text hero-content-wrapper">
+                <span class="badge">Now in Alpha</span>
                 <h1>FireShield v1.0</h1>
-                <p>The first autonomous robotic responder designed for localized fire suppression in high-stakes environments.</p>
+                <p>The paradigm shift in autonomous fire safety. A next-generation robotic responder designed for immediate, localized suppression in high-stakes environments.</p>
                 <div class="hero-actions">
-                    <button class="btn-primary" onclick="window.location.href='#specs'">Technical Specs</button>
-                    <button class="btn-secondary" onclick="window.location.href='index.html#contact'">Request Demo</button>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="product-placeholder">
-                    <i class="fas fa-robot"></i>
+                    <!-- Updated href to point to the effectiveness section -->
+                    <button class="btn-primary" onclick="window.location.href='#effectiveness'">Technical Specs</button>
                 </div>
             </div>
         </header>
 
-        <section class="effectiveness">
+        <!-- Moved Market Section Above Autonomous Intelligence -->
+        <section class="market-section">
+            <div class="market-container fade-in">
+                <h2>Market Opportunity</h2>
+                <!-- Added bold tags -->
+                <p>We are positioning ourselves at the intersection of two rapidly growing industries: <strong>Autonomous Robotics</strong> and <strong>Fire Protection Systems</strong>.</p>
+                
+                <div class="market-grid">
+                    <div class="market-card">
+                        <h3>
+                            <span class="counter-value" data-prefix="$" data-target="100" data-suffix="B+">0</span>
+                        </h3>
+                        <p>Total Addressable Market (TAM) for Global Fire Protection by 2030.</p>
+                        <small class="stat-source">Source: Fortune Business Insights</small>
+                    </div>
+                    <div class="market-card">
+                        <h3>
+                            <span class="counter-value" data-target="15" data-suffix="%">0</span> CAGR
+                        </h3>
+                        <p>Growth rate for AI-integrated industrial safety hardware.</p>
+                    </div>
+                    <div class="market-card">
+                        <h3>High Demand</h3>
+                        <p>Immediate need within data centers, manufacturing, and luxury residential sectors.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Added ID for anchor scrolling -->
+        <section id="effectiveness" class="effectiveness">
             <h2>Autonomous Intelligence. Real-Time Action.</h2>
             <div class="features-grid">
                 <div class="feature-item">
                     <i class="fas fa-eye"></i>
                     <h3>Computer Vision</h3>
-                    <p>Utilizing Ultralytics and OpenCV to identify fire signatures with sub-second latency.</p>
+                    <p>Utilizing high-performance neural networks to identify fire signatures with sub-second latency.</p>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-microchip"></i>
                     <h3>Embedded Edge Control</h3>
-                    <p>Powered by Raspberry Pi 4 for high-speed solenoid and motor management.</p>
+                    <p>Powered by industrial-grade computing for instantaneous, reliable hardware management.</p>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-chart-line"></i>
                     <h3>Cloud Telemetry</h3>
-                    <p>Monitor system health and inference speeds through our custom MQTT dashboard.</p>
+                    <p>Monitor system health and inference speeds through our secure, real-time dashboard.</p>
                 </div>
             </div>
         </section>
 
-        <section class="comparison">
-            <h2>How We Compare</h2>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Feature</th>
-                            <th>Traditional Sprinklers</th>
-                            <th class="highlight">FireShield</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Response Time</td>
-                            <td>3 - 5 Minutes</td>
-                            <td class="highlight">Sub-10 Seconds</td>
-                        </tr>
-                        <tr>
-                            <td>Deployment</td>
-                            <td>Reactive (Heat Trigger)</td>
-                            <td class="highlight">Proactive (Vision Trigger)</td>
-                        </tr>
-                        <tr>
-                            <td>Water Damage</td>
-                            <td>Structural / Excessive</td>
-                            <td class="highlight">Localized / Minimal</td>
-                        </tr>
-                        <tr>
-                            <td>Intelligence</td>
-                            <td>None (Analog)</td>
-                            <td class="highlight">AI-Driven Edge Computing</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+        <!-- Wrapper for Side-by-Side Layout -->
+        <div class="product-details-container">
+            
+            <section class="comparison details-card">
+                <h2>How We Compare</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <!-- Added highlight-red class to Traditional Sprinkler column -->
+                                <th class="highlight-red">Traditional Sprinklers</th>
+                                <th class="highlight">FireShield</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Response Time</td>
+                                <td class="highlight-red">3 - 5 Minutes</td>
+                                <td class="highlight">Sub-10 Seconds</td>
+                            </tr>
+                            <tr>
+                                <td>Deployment</td>
+                                <td class="highlight-red">Reactive (Heat Trigger)</td>
+                                <td class="highlight">Proactive (Vision Trigger)</td>
+                            </tr>
+                            <tr>
+                                <td>Water Damage</td>
+                                <td class="highlight-red">Structural / Excessive</td>
+                                <td class="highlight">Localized / Minimal</td>
+                            </tr>
+                            <tr>
+                                <td>Intelligence</td>
+                                <td class="highlight-red">None (Analog)</td>
+                                <td class="highlight">AI-Driven Edge Computing</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
 
-        <section id="specs" class="specs-section">
-            <h2>Technical Specifications</h2>
-            <div class="specs-grid">
-                <ul>
-                    <li><strong>Processor:</strong> Raspberry Pi 4 Model B</li>
-                    <li><strong>Driver:</strong> TB6612FNG Dual Motor Controller</li>
-                    <li><strong>Vision:</strong> YOLOv8 / Ultralytics Integration</li>
-                    <li><strong>Hardware:</strong> 12V Solenoid Interface</li>
-                </ul>
-            </div>
-        </section>
+            <section id="specs" class="specs-section details-card">
+                <h2>Technical Specifications</h2>
+                <div class="specs-grid">
+                    <ul>
+                        <li>
+                            <strong>Processor</strong>
+                            <span>Industrial-Grade Edge Compute Processor</span>
+                        </li>
+                        <li>
+                            <strong>Driver</strong>
+                            <span>Precision High-Torque Motor Control</span>
+                        </li>
+                        <li>
+                            <strong>Vision</strong>
+                            <span>Proprietary Sub-Second Computer Vision Pipeline</span>
+                        </li>
+                        <li>
+                            <strong>Hardware</strong>
+                            <span>Rapid-Response Fluid Actuation System</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+        </div>
     </main>
 
-    <footer class="site-footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <div class="logo">Odryss</div>
-                <p>Bridging the gap between high-level logic and low-level control.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Explore</h4>
-                <ul>
-                    <li><a href="product.html">Product</a></li>
-                    <li><a href="mission.html">Mission</a></li>
-                    <li><a href="team.html">Meet The Team</a></li>
-                </ul>
-            </div>
-            <div class="footer-contact">
-                <h4>Connect</h4>
-                <p><i class="fas fa-envelope"></i> support@fireshield.tech</p>
-                <p><i class="fas fa-map-marker-alt"></i> San Francisco, CA</p>
-            </div>
-        </div>
-    </footer>
+    <div id="footer-placeholder"></div>
 
     <script src="assets/js/main.js"></script>
 </body>
